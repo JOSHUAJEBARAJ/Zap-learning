@@ -1,0 +1,14 @@
+name: Static Testing
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+       - master
+jobs:
+  name: checkout-repo
+  steps:
+      - uses: actions/checkout@v1
+
