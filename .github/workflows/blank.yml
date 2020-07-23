@@ -11,9 +11,6 @@ jobs:
   checkout-repo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Print File
-        run: |
-            ls
-            pwd
+     - run : |
+         docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0
 
