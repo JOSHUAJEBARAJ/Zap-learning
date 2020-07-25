@@ -1,16 +1,29 @@
-name: Static Testing
+name: Zap-scanning
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-       - master
+
 jobs:
   checkout-repo:
     runs-on: ubuntu-latest
     steps:
-     - run : |
-         docker run -p 8090:8090 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0
-
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2
+    - name : checking for existing container
+      run : docker ps
+    - name: Installing Zap
+      run :  docker run  --rm -d -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.key=12345
+    - name: Installing newman
+      run: |
+        sudo npm install -g newman
+        sleep 10
+        docker ps
+        HTTP_PROXY=http://localhost:8080/ newman run test-collection.json  --insecure
+      working-directory: postman-collection 
+    - name: Checking result
+      run: |
+       pip install --user requests 
+       docker ps
+       python url.py
+       python result.py
+      working-directory: python-scripts
