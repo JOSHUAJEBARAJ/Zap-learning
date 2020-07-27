@@ -26,5 +26,6 @@ Medium=response_content_json['Medium']
 Low=response_content_json['Low']
 ## Setting the threshold limit
 
+print(Low)
 if (High > 0 or Medium > 0 or Low > 0 ) :
  exit(1)

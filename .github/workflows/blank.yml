@@ -26,4 +26,5 @@ jobs:
        docker ps
        python url.py
        python result.py
+       python exit_code.py
       working-directory: python-scripts
