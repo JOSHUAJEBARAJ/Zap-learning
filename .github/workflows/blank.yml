@@ -25,6 +25,7 @@ jobs:
        pip install --user requests 
        docker ps
        python url.py
+       sleep 20
        python result.py
        python exit_code.py
       working-directory: python-scripts
