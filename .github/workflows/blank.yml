@@ -10,7 +10,8 @@ jobs:
     - name: Checkout 🛎️
       uses: actions/checkout@v2
     - name : checking for existing container
-      run : echo "Hello" > test
+      run : echo "Hello" > test && exit 1
+    
     - uses: actions/upload-artifact@v1
       with:
         name: result
