@@ -10,13 +10,9 @@ jobs:
     - name: Checkout 🛎️
       uses: actions/checkout@v2
     - name : checking for existing container
-      run : echo "Hello" > test 
-    
-    - uses: actions/upload-artifact@v1
-      with:
-        name: result
-        path: ${{ github.workspace }}/test
-      name: 'Upload Package'
-    - name : fail build
-      run : exit 1
+      run : |
+        sed -i 's/rebuild-url/new-text/g' test
+        cat test
+          
+      
            
