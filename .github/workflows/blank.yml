@@ -13,6 +13,11 @@ jobs:
       run : |
         sed -i 's/rebuild-url/${{ secrets.key}}/g' test
         cat test
+    - uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: ${{ github.workspace }}/test
+      name: 'Upload Package'
           
       
            
