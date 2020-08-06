@@ -2,8 +2,6 @@ name: Zap-scanning
 
 on:
   push:
-    paths:
-    - 'postman-collection/**'
 
 jobs:
   checkout-repo:
@@ -12,5 +10,10 @@ jobs:
     - name: Checkout 🛎️
       uses: actions/checkout@v2
     - name : checking for existing container
-      run : echo "Hello"
+      run : echo "Hello" > test
+    - uses: actions/upload-artifact@v1
+      with:
+        name: result
+        path: ${{ github.workspace }}/test
+      name: 'Upload Package'
            
