@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
     - name : checking for existing container
       run : |
-        sed -i 's/rebuild-url/new-text/g' test
+        sed -i 's/rebuild-url/${{ secrets.key}}/g' test
         cat test
           
       
